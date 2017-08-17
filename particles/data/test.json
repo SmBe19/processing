@@ -1,0 +1,85 @@
+{
+  "speedRndY": 0,
+  "tintRndB": 0,
+  "tintRndA": 0,
+  "tintR": [
+    {
+      "time": 0,
+      "value": 255
+    },
+    {
+      "time": 1,
+      "value": 255
+    }
+  ],
+  "speedY": 3.2877097129821777,
+  "startRndX": 0,
+  "speedX": 0,
+  "startRndY": 0,
+  "lifetime": 100,
+  "scale": 1,
+  "scaleRnd": 0,
+  "speedRndX": 0.25380635261535645,
+  "tintRndG": 0,
+  "tintRndR": 0,
+  "tintA": [
+    {
+      "time": 0,
+      "value": 255
+    },
+    {
+      "time": 0.4363636374473572,
+      "value": 195.5
+    },
+    {
+      "time": 0.678787887096405,
+      "value": 42.5
+    },
+    {
+      "time": 1,
+      "value": 0
+    }
+  ],
+  "tintB": [
+    {
+      "time": 0,
+      "value": 0
+    },
+    {
+      "time": 0.24242424964904785,
+      "value": 136
+    },
+    {
+      "time": 0.6121212244033813,
+      "value": 0
+    },
+    {
+      "time": 1,
+      "value": 0
+    }
+  ],
+  "emitCount": 0.9285411238670349,
+  "tintG": [
+    {
+      "time": 0,
+      "value": 255
+    },
+    {
+      "time": 0.5333333611488342,
+      "value": 187
+    },
+    {
+      "time": 0.7878788113594055,
+      "value": 46.75
+    },
+    {
+      "time": 1,
+      "value": 0
+    }
+  ],
+  "startY": -100,
+  "startX": 0,
+  "lifetimeRnd": 0,
+  "gravityY": 2.499999936844688E-5,
+  "gravityX": 0
+}
