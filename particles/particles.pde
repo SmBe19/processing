@@ -15,7 +15,7 @@ void setup() {
   }
   ));
   ui.add(new Button(170, 10, 100, 20, "load", new ClickListener() { 
-    public void click() { 
+    public void click() {
       selectInput("Load system", "loadSelected");
     }
   }
@@ -33,139 +33,31 @@ void setup() {
     }
   }
   )));
-
-  ui.add(slider(1, 0, 255, 200, "r", new ChangeListener() { 
-    public void change(float x) { 
-      psViewer.r = x;
-    }
-  }
-  ));
-  ui.add(slider(2, 0, 255, 200, "g", new ChangeListener() { 
-    public void change(float x) { 
-      psViewer.g = x;
-    }
-  }
-  ));
-  ui.add(slider(3, 0, 255, 200, "b", new ChangeListener() { 
-    public void change(float x) { 
-      psViewer.b = x;
-    }
-  }
-  ));
-  ui.add(slider(5, 0, 2, 0.25f, "emit", new ChangeListener() { 
-    public void change(float x) {
-      ps.emitCount = x * abs(x);
-    }
-  }
-  ));
-  ui.add(slider(6, -100, 100, 0, "x", new ChangeListener() { 
-    public void change(float x) {
-      ps.startX = x;
-    }
-  }
-  ));
-  ui.add(slider(7, 0, 100, 0, "rx", new ChangeListener() { 
-    public void change(float x) {
-      ps.startRndX = x;
-    }
-  }
-  ));
-  ui.add(slider(8, -100, 100, 0, "y", new ChangeListener() { 
-    public void change(float x) {
-      ps.startY = x;
-    }
-  }
-  ));
-  ui.add(slider(9, 0, 100, 0, "ry", new ChangeListener() { 
-    public void change(float x) {
-      ps.startRndY = x;
-    }
-  }
-  ));
-  ui.add(slider(10, -3, 3, 0, "sx", new ChangeListener() { 
-    public void change(float x) {
-      ps.speedX = x * abs(x);
-    }
-  }
-  ));
-  ui.add(slider(11, 0, 3, 0, "rsx", new ChangeListener() { 
-    public void change(float x) {
-      ps.speedRndX = x * abs(x);
-    }
-  }
-  ));
-  ui.add(slider(12, -3, 3, 0, "sy", new ChangeListener() { 
-    public void change(float x) {
-      ps.speedY = x * abs(x);
-    }
-  }
-  ));
-  ui.add(slider(13, 0, 3, 0, "rsy", new ChangeListener() { 
-    public void change(float x) {
-      ps.speedRndY = x * abs(x);
-    }
-  }
-  ));
-  ui.add(slider(14, -1, 1, 0, "gx", new ChangeListener() { 
-    public void change(float x) {
-      ps.gravityX = x * abs(x);
-    }
-  }
-  ));
-  ui.add(slider(15, -1, 1, 0.005, "gy", new ChangeListener() { 
-    public void change(float x) {
-      ps.gravityY = x * abs(x);
-    }
-  }
-  ));
-  ui.add(slider(16, 0, 4, 1, "s", new ChangeListener() { 
-    public void change(float x) {
-      ps.scale = x * abs(x);
-    }
-  }
-  ));
-  ui.add(slider(17, 0, 4, 0, "rs", new ChangeListener() { 
-    public void change(float x) {
-      ps.scaleRnd = x * abs(x);
-    }
-  }
-  ));
-  ui.add(slider(18, 0, 100, 10, "li", new ChangeListener() { 
-    public void change(float x) {
-      ps.lifetime = x * abs(x);
-    }
-  }
-  ));
-  ui.add(slider(19, 0, 100, 0, "rli", new ChangeListener() { 
-    public void change(float x) {
-      ps.lifetimeRnd = x * abs(x);
-    }
-  }
-  ));
-  ui.add(slider(20, 0, 50, 0, "rtr", new ChangeListener() { 
-    public void change(float x) {
-      ps.tintRndR = x;
-    }
-  }
-  ));
-  ui.add(slider(21, 0, 50, 0, "rtg", new ChangeListener() { 
-    public void change(float x) {
-      ps.tintRndG = x;
-    }
-  }
-  ));
-  ui.add(slider(22, 0, 50, 0, "rtb", new ChangeListener() { 
-    public void change(float x) {
-      ps.tintRndB = x;
-    }
-  }
-  ));
-  ui.add(slider(23, 0, 50, 0, "rta", new ChangeListener() { 
-    public void change(float x) {
-      ps.tintRndA = x;
-    }
-  }
-  ));
+  
+  ui.add(slider(1, 0, 255, 200, false, psViewer.r, "r"));
+  ui.add(slider(2, 0, 255, 200, false, psViewer.g, "g"));
+  ui.add(slider(3, 0, 255, 200, false, psViewer.b, "b"));
+  
+  
+  ui.add(slider(5, 0, 2, 0.5f, true, ps.emitCount, "emit"));
+  ui.add(slider(6, -100, 100, 0, false, ps.startX, "x"));
+  ui.add(slider(7, 0, 100, 0, false, ps.startRndX, "rx"));
+  ui.add(slider(8, -100, 100, 0, false, ps.startY, "y"));
+  ui.add(slider(9, 0, 100, 0, false, ps.startRndY, "ry"));
+  ui.add(slider(10, -3, 3, 0, true, ps.speedX, "sx"));
+  ui.add(slider(11, 0, 3, 0, true, ps.speedRndX, "rsx"));
+  ui.add(slider(12, -3, 3, 0, true, ps.speedY, "sy"));
+  ui.add(slider(13, 0, 3, 0, true, ps.speedRndY, "rsy"));
+  ui.add(slider(14, -1, 1, 0, true, ps.gravityX, "gx"));
+  ui.add(slider(15, -1, 1, 0, true, ps.gravityY, "gy"));
+  ui.add(slider(16, 0, 4, 1, true, ps.scale, "s"));
+  ui.add(slider(17, 0, 4, 0, true, ps.scaleRnd, "rs"));
+  ui.add(slider(18, 0, 100, 10, true, ps.lifetime, "li"));
+  ui.add(slider(19, 0, 100, 0, true, ps.lifetimeRnd, "rli"));
+  ui.add(slider(20, 0, 50, 0, false, ps.tintRndR, "rtr"));
+  ui.add(slider(21, 0, 50, 0, false, ps.tintRndG, "rtg"));
+  ui.add(slider(22, 0, 50, 0, false, ps.tintRndB, "rtb"));
+  ui.add(slider(23, 0, 50, 0, false, ps.tintRndA, "rta"));
 
   ui.add(timefloat(25, 0, 255, 255, "tr", ps.tintR));
   ui.add(timefloat(29, 0, 255, 255, "tg", ps.tintG));
@@ -187,8 +79,8 @@ UIElement grid(int i, int w, int h, UIElement element) {
   return element;
 }
 
-UIElement slider(int i, float min, float max, float value, String text, ChangeListener changeListener) {
-  return grid(i, new Slider(0, 0, 180, 15, min, max, value, text, changeListener));
+UIElement slider(int i, float min, float max, float initValue, boolean quadratic, FloatRapper value, String text) {
+  return grid(i, new Slider(0, 0, 180, 15, min, max, initValue, quadratic, value, text));
 }
 
 UIElement timefloat(int i, float min, float max, float value, String text, TimeFloat timeFloat){

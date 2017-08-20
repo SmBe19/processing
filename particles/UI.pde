@@ -99,29 +99,23 @@ class Slider extends UIElement {
 
   public String text;
   public float min, max, slidersize, left, right;
-  public float value, initValue;
-  public ChangeListener changeListener;
+  public boolean quadratic;
+  public float initValue;
+  public FloatRapper value;
 
   private boolean clicked;
 
-  public Slider(int x, int y, int w, int h, float min, float max, float value, String text) {
+  public Slider(int x, int y, int w, int h, float min, float max, float initValue, boolean quadratic, FloatRapper value, String text) {
     super(x, y, w, h);
     this.min = min;
     this.max = max;
-    this.initValue = value;
+    this.initValue = initValue;
+    this.quadratic = quadratic;
     this.value = value;
     this.text = text;
     this.slidersize = h / 2;
     this.left = slidersize + (text.length() > 0 ? slidersize + textWidth(text) : 0);
     this.right = w - slidersize;
-  }
-
-  public Slider(int x, int y, int w, int h, float min, float max, float value, String text, ChangeListener changeListener) {
-    this(x, y, w, h, min, max, value, text);
-    this.changeListener = changeListener;
-    if (changeListener != null) {
-      changeListener.change(value);
-    }
   }
 
   void doDraw() {
@@ -132,7 +126,15 @@ class Slider extends UIElement {
     textSize(10);
     text(text, slidersize, (h + 10) / 2);
     line(left, h / 2, right, h / 2);
-    ellipse(map(value, min, max, left, right), h / 2, slidersize, slidersize);
+    ellipse(map(untransformValue(value.v), min, max, left, right), h / 2, slidersize, slidersize);
+  }
+  
+  float transformValue(float x){
+    return quadratic ? x * abs(x) : x;
+  }
+  
+  float untransformValue(float x){
+    return quadratic ? sqrt(abs(x)) * (x < 0 ? -1 : 1) : x;
   }
 
   void doUpdate() {
@@ -142,40 +144,30 @@ class Slider extends UIElement {
     if (clicked && pMousePressed && !mousePressed) {
       clicked = false;
       if (mouseButton == RIGHT && mouseInside()) {
-        value = initValue;
-        if (changeListener != null) {
-          changeListener.change(value);
-        }
+        value.v = transformValue(initValue);
       }
     }
     if (clicked) {
-      value = constrain(map(mouseX, x + left, x + right, min, max), min, max);
-      if (changeListener != null) {
-        changeListener.change(value);
-      }
+      value.v = transformValue(constrain(map(mouseX, x + left, x + right, min, max), min, max));
     }
   }
-}
-
-interface ChangeListener {
-  void change(float value);
 }
 
 class PSViewer extends UIElement {
   public ParticleSystem ps;
-  public float r, g, b;
+  public FloatRapper r, g, b;
 
   public PSViewer(int x, int y, int w, int h, ParticleSystem ps) {
     super(x, y, w, h);
     this.ps = ps;
-    this.r = 255;
-    this.g = 255;
-    this.b = 255;
+    this.r = new FloatRapper(200);
+    this.g = new FloatRapper(200);
+    this.b = new FloatRapper(200);
   }
 
   void doDraw() {
     clip(-1, -1, w+2, h+2);
-    fill(r, g, b);
+    fill(r.v, g.v, b.v);
     stroke(0);
     rect(0, 0, w, h);
     ps.draw(w/2, h/2);
@@ -275,6 +267,9 @@ class TimeFloatViewer extends UIElement {
       for (int i = 0; i < timeFloat.points.size(); i++) {
         if (abs(mx - getX(timeFloat.points.get(i))) < 10) {
           currentPoint = i;
+          if (i > 0){
+            break;
+          }
         }
       }
   }

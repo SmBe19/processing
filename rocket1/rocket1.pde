@@ -1,4 +1,5 @@
-PImage dude, fire, ship, boomImg;
+PImage dude, ship, boomImg;
+ParticleSystem rocketps;
 FixedQueue<Float> xQueue;
 int lastFrame, delta;
 boolean[] keys = new boolean[256];
@@ -7,16 +8,18 @@ int waveCount;
 float[] waves, wavesSpeed;
 float dudeX, dudeY, speedX, speedY, shipX, shipY, shipDestX;
 boolean onShip, boom;
+float rocketpsOrigEmit;
 
 void setup() {
   size(800, 480);
   dude = loadImage("dude.png");
-  fire = loadImage("fire.png");
   ship = loadImage("ship.png");
   boomImg = loadImage("boom.png");
+  rocketps = new ParticleSystem();
   xQueue = new FixedQueue<Float>(20, width/2f);
   lastFrame = millis();
   reset();
+  rocketpsOrigEmit = rocketps.emitCount.v;
   waveCount = width / 5 + 1;
   waves = new float[waveCount];
   wavesSpeed = new float[waveCount];
@@ -35,9 +38,12 @@ void reset() {
   for (int i = 0; i < xQueue.capacity; i++) {
     xQueue.push(dudeX);
   }
+  rocketps.load("rocketps.json");
+  rocketps.reset();
 }
 
 void drawDude() {
+  rocketps.update();
   xQueue.push(dudeX);
   float diffX = constrain(dudeX - xQueue.peek(), -500, 500);
 
@@ -54,14 +60,15 @@ void drawDude() {
     translate(dudeX, dudeY);
     rotate(PI * 0.3 * diffX / 500f);
     image(dude, -dude.width / 2, -dude.height / 2);
-    if (keys['W']) {
-      image(fire, -fire.width / 2, -fire.height / 2);
-    }
     
     fill(0);
     textSize(20);
     text(""+ceil(speedY), dude.width / 2, 0);
   }
+  pushMatrix();
+  scale(0.5);
+  rocketps.draw(0, 35);
+  popMatrix();
   popMatrix();
 }
 
@@ -104,6 +111,9 @@ void updateDude() {
   }
   if (keys['W']) {
     speedY -= delta * 0.05;
+    rocketps.emitCount.v = rocketpsOrigEmit;
+  } else {
+    rocketps.emitCount.v = 0;
   }
   dudeX += speedX * delta * 0.001f;
   dudeY += speedY * delta * 0.001f;
@@ -116,11 +126,13 @@ void updateDude() {
   
   if (abs(shipX - dudeX) < ship.width / 2 && dudeY > shipY - 5) {
     boom = true;
+    rocketps.load("rocketboom.json");
     return;
   }
   
   if (dudeY > height - 80){
     boom = true;
+    rocketps.load("rocketboom.json");
     return;
   }
 }
