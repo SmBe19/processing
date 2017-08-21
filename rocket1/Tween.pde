@@ -56,12 +56,7 @@ class Tween {
   }
   
   public Tween set(float v){
-    this.v = v;
-    return this;
-  }
-  
-  public Tween add(float v){
-    this.v += v;
+    actions.add(new TweenActionSet(v));
     return this;
   }
 
@@ -99,6 +94,22 @@ class Tween {
 abstract class TweenAction {
   public abstract boolean isDone();
   public abstract void update(Tween tween, int delta);
+}
+
+class TweenActionSet extends TweenAction {
+  float v;
+  
+  public TweenActionSet(float v){
+    this.v = v;
+  }
+  
+  public boolean isDone(){
+    return true;
+  }
+  
+  public void update(Tween tween, int delta){
+    tween.v = v;
+  }
 }
 
 class TweenActionWait extends TweenAction {

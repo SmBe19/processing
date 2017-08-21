@@ -1,0 +1,66 @@
+{
+  "speedRndY": 0.8173403143882751,
+  "tintRndB": 0,
+  "tintRndA": 0,
+  "tintR": [
+    {
+      "time": 0,
+      "value": 72.25
+    },
+    {
+      "time": 1,
+      "value": 136
+    }
+  ],
+  "speedY": -0.2289993315935135,
+  "texture": "particle.png",
+  "startRndX": 33.89239501953125,
+  "speedX": 0,
+  "startRndY": 0,
+  "lifetime": 52.925174713134766,
+  "scale": 0.131934255361557,
+  "scaleRnd": 0,
+  "speedRndX": 0.37267062067985535,
+  "tintRndG": 0,
+  "tintRndR": 0,
+  "tintA": [
+    {
+      "time": 0,
+      "value": 255
+    },
+    {
+      "time": 0.7818182110786438,
+      "value": 161.5
+    },
+    {
+      "time": 1,
+      "value": 0
+    }
+  ],
+  "tintB": [
+    {
+      "time": 0,
+      "value": 255
+    },
+    {
+      "time": 1,
+      "value": 255
+    }
+  ],
+  "emitCount": 2.218057155609131,
+  "tintG": [
+    {
+      "time": 0,
+      "value": 136
+    },
+    {
+      "time": 1,
+      "value": 199.75
+    }
+  ],
+  "startY": 0,
+  "startX": 0,
+  "lifetimeRnd": 0,
+  "gravityY": 0.04054833948612213,
+  "gravityX": 0
+}
