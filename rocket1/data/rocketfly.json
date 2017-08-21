@@ -14,14 +14,14 @@
   ],
   "speedY": 3.2877097129821777,
   "texture": "particle.png",
-  "startRndX": 20.261959075927734,
+  "startRndX": 0,
   "speedX": 0,
-  "startRndY": 20.17335319519043,
+  "startRndY": 0,
   "lifetime": 100,
   "scale": 1,
   "scaleRnd": 0,
   "speedRndX": 0.25380635261535645,
-  "tintRndG": 50,
+  "tintRndG": 0,
   "tintRndR": 0,
   "tintA": [
     {
@@ -78,7 +78,7 @@
       "value": 0
     }
   ],
-  "startY": 0,
+  "startY": 35,
   "startX": 0,
   "lifetimeRnd": 0,
   "gravityY": 2.499999936844688E-5,
